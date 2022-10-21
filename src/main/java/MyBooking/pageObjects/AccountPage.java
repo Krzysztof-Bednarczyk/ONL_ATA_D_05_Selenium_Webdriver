@@ -16,4 +16,10 @@ public class AccountPage {
         WebElement successAlert = driver.findElement(By.cssSelector(".alert.alert-success"));
         return successAlert.isDisplayed();
     }
+
+    public HomePage clickMyBookingLogo(){
+        WebElement homeLogo = driver.findElement(By.cssSelector("a[title='MyBooking']"));
+        homeLogo.click();
+        return new HomePage(driver);
+    }
 }

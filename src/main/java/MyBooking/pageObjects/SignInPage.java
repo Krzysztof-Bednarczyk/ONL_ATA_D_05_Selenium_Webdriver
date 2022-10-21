@@ -20,4 +20,14 @@ public class SignInPage {
         createAccountButton.submit();
         return new FormPage(driver);
     }
+
+    public AccountPage loginUser(String email, String password){
+        WebElement emailInput = driver.findElement(By.id("email"));
+        WebElement passwordInput = driver.findElement(By.id("passwd"));
+        WebElement signInButton = driver.findElement(By.id("SubmitLogin"));
+        emailInput.sendKeys(email);
+        passwordInput.sendKeys(password);
+        signInButton.click();
+        return new AccountPage(driver);
+    }
 }

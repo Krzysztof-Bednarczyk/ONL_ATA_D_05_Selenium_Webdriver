@@ -36,4 +36,18 @@ public class HomePage {
         signInButton.click();
         return new SignInPage(driver);
     }
+
+    public HotelSearchPage searchForHotel(String checkinDate, String checkoutDate){
+        WebElement dropdown = driver.findElement(By.id("hotel_cat_name"));
+        dropdown.click();
+        WebElement hotelPrime = driver.findElement(By.className("hotel_name"));
+        hotelPrime.click();
+        WebElement checkInTimeInput = driver.findElement(By.id("check_in_time"));
+        WebElement checkoutTimeInput = driver.findElement(By.id("check_out_time"));
+        checkInTimeInput.sendKeys(checkinDate);
+        checkoutTimeInput.sendKeys(checkoutDate);
+        WebElement searchNowButton = driver.findElement(By.id("search_room_submit"));
+        searchNowButton.click();
+        return new HotelSearchPage(driver);
+    }
 }
