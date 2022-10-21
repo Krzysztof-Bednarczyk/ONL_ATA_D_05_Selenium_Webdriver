@@ -6,8 +6,8 @@ import org.openqa.selenium.WebElement;
 
 public class HomePage {
 
-    private WebDriver driver;
-    private static String SITE_URL = "https://hotel-testlab.coderslab.pl/en/";
+    private final WebDriver driver;
+    private static final String SITE_URL = "https://hotel-testlab.coderslab.pl/en/";
 
     public HomePage(WebDriver driver) {
         this.driver = driver;
@@ -30,5 +30,10 @@ public class HomePage {
     public boolean verifySuccessAlertExists(){
         WebElement successAlert = driver.findElement(By.cssSelector(".alert.alert-success"));
         return successAlert.isDisplayed();
+    }
+    public SignInPage signIn(){
+        WebElement signInButton = driver.findElement(By.className("user_login"));
+        signInButton.click();
+        return new SignInPage(driver);
     }
 }

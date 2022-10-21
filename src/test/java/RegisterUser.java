@@ -1,3 +1,7 @@
+import MyBooking.pageObjects.AccountPage;
+import MyBooking.pageObjects.FormPage;
+import MyBooking.pageObjects.HomePage;
+import MyBooking.pageObjects.SignInPage;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -58,6 +62,16 @@ class RegisterUser {
 
         Assertions.assertTrue(myPersonalInfo.isDisplayed());
         Assertions.assertTrue(myAdresses.isDisplayed());
+    }
+
+    @Test
+    void registerUserPageObject(){
+        HomePage homePage = new HomePage(driver);
+        homePage.openPage();
+        SignInPage signInPage = homePage.signIn();
+        FormPage formPage = signInPage.createUser(createRandomEmail());
+        AccountPage accountPage = formPage.fillForm(createRandomFirstName(), createRandomLastName(), createRandomPassword());
+        Assertions.assertTrue(accountPage.verifyAlert());
     }
 
     @AfterEach
