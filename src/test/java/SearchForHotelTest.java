@@ -40,4 +40,19 @@ public class SearchForHotelTest {
         String actualText = hotelSearchPage.getGeneralRoomHeadingText();
         Assertions.assertEquals(expectedText, actualText);
     }
+
+    @Test
+    void bookHotel() throws InterruptedException {
+        HomePage homePage = new HomePage(driver);
+        SignInPage signInPage = homePage.openPage().signIn();
+        AccountPage accountPage = signInPage.loginUser(EMAIL, PASSWORD);
+        homePage = accountPage.clickMyBookingLogo();
+        HotelSearchPage hotelSearchPage = homePage.searchForHotel("22-10-2022", "26-10-2022");
+        hotelSearchPage.bookHotel(0);
+        Thread.sleep(1000);
+        Assertions.assertTrue(hotelSearchPage.verifyHotelIsAdded());
+        String expectedAlertMessage = "Room successfully added to your cart";
+        String actualAlertMessage = hotelSearchPage.getSuccessAlertString();
+        Assertions.assertEquals(expectedAlertMessage, actualAlertMessage);
+    }
 }
