@@ -2,12 +2,14 @@ import MyBooking.pageObjects.AccountPage;
 import MyBooking.pageObjects.HomePage;
 import MyBooking.pageObjects.HotelSearchPage;
 import MyBooking.pageObjects.SignInPage;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import java.time.LocalDate;
 import java.util.concurrent.TimeUnit;
 
 public class SearchForHotelTest {
@@ -42,17 +44,20 @@ public class SearchForHotelTest {
     }
 
     @Test
-    void bookHotel() throws InterruptedException {
+    void bookHotel() {
         HomePage homePage = new HomePage(driver);
         SignInPage signInPage = homePage.openPage().signIn();
         AccountPage accountPage = signInPage.loginUser(EMAIL, PASSWORD);
         homePage = accountPage.clickMyBookingLogo();
-        HotelSearchPage hotelSearchPage = homePage.searchForHotel("22-10-2022", "26-10-2022");
+        HotelSearchPage hotelSearchPage = homePage.searchForHotel(LocalDate.now().toString(), LocalDate.now().plusDays(3).toString());
         hotelSearchPage.bookHotel(0);
-        Thread.sleep(1000);
         Assertions.assertTrue(hotelSearchPage.verifyHotelIsAdded());
         String expectedAlertMessage = "Room successfully added to your cart";
         String actualAlertMessage = hotelSearchPage.getSuccessAlertString();
         Assertions.assertEquals(expectedAlertMessage, actualAlertMessage);
+    }
+    @AfterEach
+    void tearDown(){
+        driver.quit();
     }
 }

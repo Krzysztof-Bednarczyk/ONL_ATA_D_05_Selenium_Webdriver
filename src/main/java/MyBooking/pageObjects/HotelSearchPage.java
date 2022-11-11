@@ -3,8 +3,13 @@ package MyBooking.pageObjects;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
 import java.util.List;
+
+import static java.time.temporal.ChronoUnit.SECONDS;
 
 public class HotelSearchPage {
 
@@ -31,7 +36,9 @@ public class HotelSearchPage {
         bookingButton.get(index).click();
     }
 
-    public boolean verifyHotelIsAdded(){
+    public boolean verifyHotelIsAdded() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.of(5, SECONDS));
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#layer_cart[style*='display: block']")));
         WebElement successAlert = driver.findElement(By.cssSelector(".layer_cart_product.col-xs-12.col-md-6 h2"));
         return successAlert.isDisplayed();
     }
