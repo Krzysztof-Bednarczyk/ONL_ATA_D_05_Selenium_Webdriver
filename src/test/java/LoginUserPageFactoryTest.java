@@ -8,9 +8,10 @@ import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 
-public class LoginUserPageFactoryTest {
+class LoginUserPageFactoryTest {
 
     private static final String EMAIL = "michal.dobrzycki@coderslab.pl";
     private static final String PASSWORD = "CodersLab";
@@ -23,7 +24,7 @@ public class LoginUserPageFactoryTest {
                 "src/main/resources/drivers/chromedriver");
 
         driver = new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.manage().window().maximize();
     }
 

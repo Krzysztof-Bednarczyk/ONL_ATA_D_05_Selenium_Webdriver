@@ -5,9 +5,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import MyBooking.pageObjects.HomePage;
 
+import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 
-public class SubscribeToNewsletterTest {
+class SubscribeToNewsletterTest {
 
     private WebDriver driver;
 
@@ -17,7 +18,7 @@ public class SubscribeToNewsletterTest {
                 "src/main/resources/drivers/chromedriver");
 
         driver = new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.manage().window().maximize();
     }
 

@@ -9,10 +9,11 @@ import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import java.time.Duration;
 import java.time.LocalDate;
 import java.util.concurrent.TimeUnit;
 
-public class SearchForHotelTest {
+class SearchForHotelTest {
 
     private static final String EMAIL = "johnybravo223@test.com";
 
@@ -26,7 +27,7 @@ public class SearchForHotelTest {
                 "src/main/resources/drivers/chromedriver");
 
         driver = new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.manage().window().maximize();
     }
 

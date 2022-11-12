@@ -9,7 +9,7 @@ public class LandingPage {
 
     private static final String URL = "https://mystore-testlab.coderslab.pl/index.php"; // adres strony
 
-    private WebDriver driver;
+    private final WebDriver driver;
 
     public LandingPage(WebDriver driver) {
         this.driver = driver;
